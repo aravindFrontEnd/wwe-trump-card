@@ -9,7 +9,7 @@ const wrestlerData = [
     biceps: "21.5",
     height: "6'10",
     weight: "328",
-    image: '../public/Undertaker.jpg'
+    image: '/Undertaker.jpg'
   },
   {
     ringName: "The Rock",
@@ -20,7 +20,7 @@ const wrestlerData = [
     biceps: "65",
     height: "6'5",
     weight: "275",
-    image: '../public/rock.webp'
+    image: '/rock.webp'
   },
   {
     ringName: "Triple H",
@@ -31,7 +31,7 @@ const wrestlerData = [
     biceps: "21.5",
     height: "6'4",
     weight: "255",
-    image: '../public/HHH.jpg'
+    image: '/HHH.jpg'
   },
   {
     ringName: "John Cena",
@@ -42,7 +42,7 @@ const wrestlerData = [
     biceps: "20",
     height: "5'10",
     weight: "225",
-    image: '../public/john cena.jpg'
+    image: '/john-cena.jpg'
   },
   // {
   //   ringName: "Big Show",
