@@ -1,0 +1,55 @@
+.app {
+  @apply min-h-screen bg-gray-900;
+}
+
+.start-screen {
+  @apply min-h-screen flex items-center justify-center p-4;
+}
+
+.start-content {
+  @apply max-w-xl mx-auto text-center space-y-8 bg-gray-800/50 
+         p-8 rounded-xl backdrop-blur-sm;
+}
+
+.title {
+  @apply text-5xl md:text-7xl font-bold mb-4;
+  background: linear-gradient(to right, #ff0000, #ffd700);
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+}
+
+.subtitle {
+  @apply text-xl text-gray-300 mb-8;
+}
+
+.start-button {
+  @apply px-8 py-4 bg-red-600 text-white rounded-lg 
+         font-bold text-xl shadow-lg hover:bg-red-700 
+         transition-colors transform;
+}
+
+.instructions {
+  @apply mt-12 text-left;
+}
+
+.instructions-title {
+  @apply text-2xl font-bold text-white mb-4;
+}
+
+.instructions-list {
+  @apply text-gray-300 space-y-2 list-disc list-inside;
+}
+
+@media (max-width: 768px) {
+  .title {
+    @apply text-4xl;
+  }
+  
+  .subtitle {
+    @apply text-lg;
+  }
+  
+  .instructions-title {
+    @apply text-xl;
+  }
+}

@@ -1,0 +1,95 @@
+.card-container {
+    @apply relative w-72 h-96;
+    perspective: 1000px;
+
+  }
+  
+  .card {
+    @apply relative w-full h-full transition-transform duration-500;
+    transform-style: preserve-3d;
+  }
+  
+  .card.flipped {
+    transform: rotateY(180deg);
+  }
+  
+  .card-front,
+  .card-back {
+    @apply absolute w-full h-full rounded-xl p-4;
+    backface-visibility: hidden;
+
+  }
+  
+  .card-front {
+    @apply bg-gradient-to-br from-gray-900 to-gray-800 text-white;
+  }
+  
+  .card-back {
+    @apply bg-gradient-to-br from-red-900 to-red-700 text-white;
+    transform: rotateY(180deg);
+  }
+  
+  .card-header {
+    @apply flex justify-between items-center mb-4;
+  }
+  
+  .card-rank {
+    @apply text-yellow-400 text-sm font-semibold;
+  }
+  
+  .card-name {
+    @apply text-xl font-bold text-right;
+  }
+  
+  .card-image-wrapper {
+    @apply relative w-full h-40 mb-4;
+  }
+  
+  .card-image {
+    @apply w-full h-full object-cover rounded-lg shadow-lg;
+  }
+  
+  .wrestler-real-name {
+    @apply text-sm text-gray-300 mb-4 text-center;
+  }
+  
+  .stats-container {
+    @apply space-y-2;
+  }
+  
+  .stat-button {
+    @apply w-full flex justify-between items-center p-2 rounded
+           transition-colors duration-200;
+  }
+  
+  .stat-button.clickable {
+    @apply hover:bg-blue-600 cursor-pointer;
+  }
+  
+  .stat-button.selected {
+    @apply bg-blue-600;
+  }
+  
+  .stat-button:not(.clickable) {
+    @apply cursor-default;
+  }
+  
+  .stat-label {
+    @apply text-sm text-gray-300;
+  }
+  
+  .stat-value {
+    @apply font-semibold;
+  }
+  
+  .wwe-logo {
+    @apply flex flex-col items-center justify-center h-full space-y-4;
+  }
+  
+  .wwe-logo h2 {
+    @apply text-4xl font-bold text-yellow-400;
+  }
+  
+  .wwe-logo h3 {
+    @apply text-2xl font-bold text-white;
+  }

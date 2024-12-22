@@ -1,0 +1,123 @@
+.battlefield {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    gap: 2rem;
+    padding: 2rem;
+    margin: 2rem 0;
+  }
+  
+  .card-area {
+    position: relative;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 1.5rem;
+  }
+  
+  .player-label {
+    font-size: 1.25rem;
+    font-weight: 600;
+    color: #9ca3af;
+    text-align: center;
+  }
+  
+  .center-area {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 1.5rem;
+  }
+  
+  .vs-badge {
+    width: 4rem;
+    height: 4rem;
+    background: linear-gradient(145deg, #dc2626, #991b1b);
+    border-radius: 50%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-size: 1.5rem;
+    font-weight: bold;
+    color: white;
+    box-shadow: 0 4px 6px rgba(0, 0, 0, 0.3);
+  }
+  
+  .comparing-stat {
+    background-color: #3b82f6;
+    color: white;
+    padding: 0.5rem 1rem;
+    border-radius: 9999px;
+    font-size: 0.875rem;
+    font-weight: 600;
+    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.2);
+  }
+  
+  .winner-badge {
+    position: absolute;
+    bottom: -2rem;
+    left: 50%;
+    transform: translateX(-50%);
+    background: linear-gradient(145deg, #22c55e, #16a34a);
+    color: white;
+    padding: 0.5rem 2rem;
+    border-radius: 9999px;
+    font-weight: bold;
+    font-size: 1.25rem;
+    box-shadow: 0 4px 6px rgba(0, 0, 0, 0.2);
+    z-index: 10;
+  }
+  
+  .computer-area .winner-badge {
+    background: linear-gradient(145deg, #dc2626, #991b1b);
+  }
+  
+  /* Responsive Design */
+  @media (max-width: 768px) {
+    .battlefield {
+      flex-direction: column;
+      gap: 4rem;
+      padding: 1rem;
+    }
+  
+    .center-area {
+      gap: 1rem;
+    }
+  
+    .vs-badge {
+      width: 3rem;
+      height: 3rem;
+      font-size: 1.25rem;
+    }
+  
+    .winner-badge {
+      font-size: 1rem;
+      padding: 0.375rem 1.5rem;
+    }
+  }
+  
+  /* Animation classes */
+  .card-area.winner {
+    animation: pulse 2s infinite;
+  }
+  
+  @keyframes pulse {
+    0% { transform: scale(1); }
+    50% { transform: scale(1.05); }
+    100% { transform: scale(1); }
+  }
+  
+  /* Optional: Add hover effects */
+  .card-area:hover {
+    transform: translateY(-4px);
+    transition: transform 0.3s ease;
+  }
+  
+  /* Optional: Add card glow effect for active player */
+  .player-area.active .card-container {
+    box-shadow: 0 0 20px rgba(59, 130, 246, 0.5);
+  }
+  
+  .computer-area.active .card-container {
+    box-shadow: 0 0 20px rgba(220, 38, 38, 0.5);
+  }

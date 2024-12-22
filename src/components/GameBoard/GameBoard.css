@@ -1,0 +1,66 @@
+.game-board {
+    @apply min-h-screen bg-gray-900 text-white p-4;
+  }
+  
+  .game-header {
+    @apply text-center mb-8 space-y-2;
+  }
+  
+  .game-title {
+    @apply text-4xl md:text-6xl font-bold;
+    background: linear-gradient(to right, #ff0000, #ffd700);
+    -webkit-background-clip: text;
+    -webkit-text-fill-color: transparent;
+  }
+  
+  .game-subtitle {
+    @apply text-lg text-gray-400;
+  }
+  
+  .game-content {
+    @apply container mx-auto max-w-6xl;
+  }
+  
+  .loading-screen {
+    @apply flex flex-col items-center justify-center h-[60vh] gap-4;
+  }
+  
+  .loading-spinner {
+    @apply w-12 h-12 border-4 border-blue-500 border-t-transparent 
+           rounded-full animate-spin;
+  }
+  
+  .error-screen {
+    @apply flex items-center justify-center min-h-screen bg-gray-900 p-4;
+  }
+  
+  .error-content {
+    @apply bg-gray-800 p-8 rounded-xl text-center space-y-4 max-w-md;
+  }
+  
+  .error-icon {
+    @apply text-4xl mb-4;
+  }
+  
+  .error-title {
+    @apply text-2xl font-bold text-red-500;
+  }
+  
+  .error-message {
+    @apply text-gray-300 mb-6;
+  }
+  
+  /* Responsive Adjustments */
+  @media (max-width: 768px) {
+    .game-title {
+      @apply text-3xl;
+    }
+  
+    .game-subtitle {
+      @apply text-base;
+    }
+  
+    .game-content {
+      @apply px-2;
+    }
+  }
