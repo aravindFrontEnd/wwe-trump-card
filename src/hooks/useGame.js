@@ -85,7 +85,7 @@ const useGame = (numberOfCards = 5) => {
     
     setTimeout(() => {
       handleRoundEnd(winner);
-    }, 2000);
+    }, 4800);
   }, [currentPlayerCard, currentComputerCard]);
 
   const handleRoundEnd = (winner) => {

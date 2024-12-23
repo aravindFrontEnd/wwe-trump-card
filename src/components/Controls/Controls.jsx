@@ -1,6 +1,8 @@
 import React from 'react';
 import { motion, AnimatePresence } from 'framer-motion';
 import { GAME_STATES } from '../../constants/gameConstants';
+import Confetti from 'react-confetti';
+import { useWindowSize } from 'react-use';
 import './Controls.css';
 
 const Controls = ({
@@ -11,6 +13,9 @@ const Controls = ({
   playerDeckCount,
   computerDeckCount
 }) => {
+  const { width, height } = useWindowSize();
+  const [showConfetti, setShowConfetti] = React.useState(false);
+
   const buttonVariants = {
     initial: { scale: 0.9, opacity: 0 },
     animate: { 
@@ -25,8 +30,36 @@ const Controls = ({
     tap: { scale: 0.95 }
   };
 
+  // Show confetti when player wins
+  React.useEffect(() => {
+    if (gameState === GAME_STATES.GAME_OVER && playerDeckCount > computerDeckCount) {
+      setShowConfetti(true);
+      setTimeout(() => setShowConfetti(false), 10000);
+    }
+  }, [gameState, playerDeckCount, computerDeckCount]);
+
   return (
     <div className="controls">
+      {/* Confetti */}
+      {showConfetti && (
+        <Confetti
+          width={width}
+          height={height}
+          recycle={false}
+          numberOfPieces={500}
+          gravity={0.2}
+          style={{
+            position: 'fixed',
+            top: 0,
+            left: 0,
+            width: '100%',
+            height: '100%',
+            pointerEvents: 'none',
+            zIndex: 1000
+          }}
+        />
+      )}
+
       {/* Scoreboard */}
       <div className="scoreboard">
         <div className="score-item">

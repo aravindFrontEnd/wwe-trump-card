@@ -55,8 +55,8 @@
   
   .winner-badge {
     position: absolute;
-    bottom: -2rem;
-    left: 50%;
+    left:-10px;
+    top:100px;
     transform: translateX(-50%);
     background: linear-gradient(145deg, #22c55e, #16a34a);
     color: white;
@@ -107,13 +107,13 @@
     100% { transform: scale(1); }
   }
   
-  /* Optional: Add hover effects */
+
   .card-area:hover {
     transform: translateY(-4px);
     transition: transform 0.3s ease;
   }
   
-  /* Optional: Add card glow effect for active player */
+
   .player-area.active .card-container {
     box-shadow: 0 0 20px rgba(59, 130, 246, 0.5);
   }

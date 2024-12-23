@@ -24,8 +24,7 @@ const Battlefield = ({
 
   return (
     <div className="battlefield">
-      {/* Player Side */}
-      <div className="card-area player-area  w-[300px]">
+           <div className="card-area player-area  w-[300px]">
         <div className="player-label">Your Card</div>
         <WrestlerCard
           wrestler={playerCard}
@@ -33,8 +32,9 @@ const Battlefield = ({
           isActive={roundWinner === 'player'}
           onSelectStat={gameState === 'selecting' ? onSelectStat : null}
           selectedStat={selectedStat}
+          isWinner={roundWinner ? roundWinner === 'player' : null}
         />
-        <AnimatePresence>
+        {/* <AnimatePresence>
           {roundWinner === 'player' && (
             <motion.div
               initial={{ opacity: 0, y: 20 }}
@@ -45,7 +45,7 @@ const Battlefield = ({
               Winner!
             </motion.div>
           )}
-        </AnimatePresence>
+        </AnimatePresence> */}
       </div>
 
       {/* Center Area */}
@@ -68,7 +68,7 @@ const Battlefield = ({
         )}
       </div>
 
-      {/* Computer Side */}
+     
       <div className="card-area computer-area  w-[300px]">
         <div className="player-label">Computer's Card</div>
         <WrestlerCard
@@ -76,8 +76,10 @@ const Battlefield = ({
           faceUp={showComputerCard}
           isActive={roundWinner === 'computer'}
           showStats={showComputerCard}
+
+          isWinner={roundWinner ? roundWinner === 'computer' : null}
         />
-        <AnimatePresence>
+        {/* <AnimatePresence>
           {roundWinner === 'computer' && (
             <motion.div
               initial={{ opacity: 0, y: 20 }}
@@ -88,7 +90,7 @@ const Battlefield = ({
               Winner!
             </motion.div>
           )}
-        </AnimatePresence>
+        </AnimatePresence> */}
       </div>
     </div>
   );

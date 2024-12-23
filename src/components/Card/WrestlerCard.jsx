@@ -1,7 +1,8 @@
 import React from 'react';
-import { motion } from 'framer-motion';
+import { motion, AnimatePresence } from 'framer-motion';
 import { STATS } from '../../constants/gameConstants';
 import './WrestlerCard.css';
+import { ThumbsUp, ThumbsDown } from 'lucide-react';
 
 const WrestlerCard = ({
   wrestler,
@@ -10,6 +11,8 @@ const WrestlerCard = ({
   onSelectStat,
   selectedStat = null,
   showStats = true,
+  isWinner = false
+
 }) => {
   if (!wrestler) return null;
 
@@ -36,8 +39,25 @@ const WrestlerCard = ({
       variants={cardVariants}
       initial="initial"
       animate="animate"
-      className="card-container  w-full h-[500px]"
+      className="card-container  w-full h-[500px] relative"
     >
+      <AnimatePresence>
+        {typeof isWinner === 'boolean' && (
+          <motion.div
+            initial={{ opacity: 0, y: -20 }}
+            animate={{ opacity: 1, y: 0 }}
+            exit={{ opacity: 0 }}
+            className={`absolute -top-4 right-4 z-50 p-2 rounded-full 
+                       ${isWinner ? 'bg-green-500' : 'bg-red-500'}`}
+          >
+            {isWinner ? (
+              <ThumbsUp className="w-6 h-6 text-white" />
+            ) : (
+              <ThumbsDown className="w-6 h-6 text-white" />
+            )}
+          </motion.div>
+        )}
+      </AnimatePresence>
       <div className={`card ${faceUp ? '' : 'flipped'}`}>
         {/* Front of the card */}
         <div className="card-front">
@@ -50,12 +70,12 @@ const WrestlerCard = ({
             <img
               src={wrestler.image}
               alt={wrestler.name}
-              className="card-image object-contain" // Changed from object-cover
+              className="card-image object-contain"
               style={{
                 width: '100%',
                 height: '100%',
-                objectFit: 'contain', // This prevents stretching
-                backgroundColor: 'rgb(17, 24, 39)' // Dark background for image
+                objectFit: 'contain',
+                backgroundColor: 'rgb(17, 24, 39)'
               }}
             />
           </div>
@@ -64,7 +84,7 @@ const WrestlerCard = ({
 
           {showStats && (
             <div className="stats-container">
-              {/* Add Rank as first stat */}
+
               <motion.button
                 variants={statsVariants}
                 whileHover="hover"
@@ -77,7 +97,7 @@ const WrestlerCard = ({
                 <span className="stat-value">{wrestler.rank}</span>
               </motion.button>
 
-              {/* Other stats */}
+
               {Object.entries(wrestler.stats).map(([stat, value]) => (
                 <motion.button
                   key={stat}
@@ -98,7 +118,7 @@ const WrestlerCard = ({
           )}
         </div>
 
-        {/* Back of the card */}
+
         <div className="card-back">
           <div className="wwe-logo no-flip">
             <h2>WWE</h2>

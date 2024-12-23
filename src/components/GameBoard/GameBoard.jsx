@@ -21,8 +21,7 @@ const GameBoard = ({ numberOfCards, onWin, onReset }) => {
     actions
   } = useGame(numberOfCards);
 
-  // Call onWin when game ends
-  React.useEffect(() => {
+   React.useEffect(() => {
     if (gameState === 'game_over') {
       onWin?.(playerDeck.length > computerDeck.length ? 'player' : 'computer');
     }
