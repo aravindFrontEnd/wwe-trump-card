@@ -94,7 +94,6 @@
     @apply text-2xl font-bold text-white;
   }
   .card-back .wwe-logo.no-flip {
-    transform: rotateY(180deg);
     display: flex;
     flex-direction: column;
     align-items: center;

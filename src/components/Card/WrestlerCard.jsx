@@ -101,8 +101,8 @@ const WrestlerCard = ({
         {/* Back of the card */}
         <div className="card-back">
           <div className="wwe-logo no-flip">
-            <h2 style={{ transform: 'rotateY(180deg)' }}>WWE</h2>
-            <h3 style={{ transform: 'rotateY(180deg)' }}>TRUMP CARDS</h3>
+            <h2>WWE</h2>
+            <h3>TRUMP CARDS</h3>
           </div>
         </div>
       </div>
