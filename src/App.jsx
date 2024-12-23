@@ -1,51 +1,57 @@
-import React, { useState } from 'react';
+import React, { useState, useCallback } from 'react';
 import { motion, AnimatePresence } from 'framer-motion';
+import Confetti from 'react-confetti';
+import useWindowSize from 'react-use/lib/useWindowSize';
+import CardSelection from './components/CardSelection/CardSelection';
 import GameBoard from './components/GameBoard/GameBoard';
-import './App.css';
 
 const App = () => {
-  const [showIntro, setShowIntro] = useState(true);
+  const [numberOfCards, setNumberOfCards] = useState(null);
+  const [showConfetti, setShowConfetti] = useState(false);
+  const { width, height } = useWindowSize();
 
-  const StartScreen = () => (
-    <motion.div
-      initial={{ opacity: 0 }}
-      animate={{ opacity: 1 }}
-      exit={{ opacity: 0 }}
-      className="start-screen"
-    >
-      <div className="start-content">
-        <h1 className="title">WWE Trump Cards</h1>
-        <p className="subtitle">
-          Battle with legendary WWE superstars in this epic card game!
-        </p>
-        <motion.button
-          whileHover={{ scale: 1.05 }}
-          whileTap={{ scale: 0.95 }}
-          onClick={() => setShowIntro(false)}
-          className="start-button"
-        >
-          Start Game
-        </motion.button>
-        
-        <div className="instructions">
-          <h2 className="instructions-title">How to Play</h2>
-          <ul className="instructions-list">
-            <li>Draw a card from your deck</li>
-            <li>Choose a stat to compare with computer's card</li>
-            <li>Higher stats win (except for rank where lower is better)</li>
-            <li>Winner takes both cards</li>
-            <li>Collect all cards to win the game!</li>
-          </ul>
-        </div>
-      </div>
-    </motion.div>
-  );
+  const handleCardSelection = (count) => {
+    setNumberOfCards(count);
+  };
+
+  const handleGameWin = useCallback((winner) => {
+    if (winner === 'player') {
+      setShowConfetti(true);
+      // Stop confetti after 5 seconds
+      setTimeout(() => setShowConfetti(false), 5000);
+    }
+  }, []);
+
+  const handleResetGame = () => {
+    setShowConfetti(false);
+    setNumberOfCards(null);
+  };
 
   return (
-    <div className="app">
+    <div className="min-h-screen bg-gray-900 z-999">
+      {/* Confetti */}
+      {showConfetti && (
+        <Confetti
+          width={width}
+          height={height}
+          recycle={false}
+          numberOfPieces={500}
+          gravity={0.2}
+          zIndex={9999}
+          position='fixed'
+        />
+      )}
+
       <AnimatePresence mode="wait">
-        {showIntro ? (
-          <StartScreen key="intro" />
+        {!numberOfCards ? (
+          <motion.div
+            key="selection"
+            initial={{ opacity: 0 }}
+            animate={{ opacity: 1 }}
+            exit={{ opacity: 0 }}
+          >
+            <CardSelection onSelectCards={handleCardSelection} />
+          </motion.div>
         ) : (
           <motion.div
             key="game"
@@ -53,7 +59,11 @@ const App = () => {
             animate={{ opacity: 1 }}
             exit={{ opacity: 0 }}
           >
-            <GameBoard />
+            <GameBoard 
+              numberOfCards={numberOfCards}
+              onWin={handleGameWin}
+              onReset={handleResetGame}
+            />
           </motion.div>
         )}
       </AnimatePresence>

@@ -42,7 +42,7 @@ const wrestlerData = [
     biceps: "20",
     height: "5'10",
     weight: "225",
-    image: '/john-cena.jpg'
+    image: '/john cena.jpg'
   },
   // {
   //   ringName: "Big Show",

@@ -25,7 +25,7 @@ const Battlefield = ({
   return (
     <div className="battlefield">
       {/* Player Side */}
-      <div className="card-area player-area">
+      <div className="card-area player-area  w-[300px]">
         <div className="player-label">Your Card</div>
         <WrestlerCard
           wrestler={playerCard}
@@ -69,7 +69,7 @@ const Battlefield = ({
       </div>
 
       {/* Computer Side */}
-      <div className="card-area computer-area">
+      <div className="card-area computer-area  w-[300px]">
         <div className="player-label">Computer's Card</div>
         <WrestlerCard
           wrestler={computerCard}

@@ -1,8 +1,11 @@
-import wrestlerData from '../wrestlerData'; // Adjust the path as needed
+import axios from 'axios';
+
+const BASE_URL = 'https://wrestler-data-api.vercel.app/api/wrestlers';
 
 export const fetchWrestlers = async () => {
   try {
-    return wrestlerData.map(wrestler => ({
+    const response = await axios.get(BASE_URL);
+    return response.data.map(wrestler => ({
       id: wrestler.rank,
       name: wrestler.ringName,
       realName: wrestler.realName,
@@ -16,7 +19,7 @@ export const fetchWrestlers = async () => {
       }
     }));
   } catch (error) {
-    console.error('Error processing wrestlers:', error);
+    console.error('Error fetching wrestlers:', error);
     throw error;
   }
 };

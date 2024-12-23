@@ -14,11 +14,11 @@ const WrestlerCard = ({
   if (!wrestler) return null;
 
   const cardVariants = {
-    initial: { 
+    initial: {
       scale: 0.9,
-      rotateY: faceUp ? 0 : 180 
+      rotateY: faceUp ? 0 : 180
     },
-    animate: { 
+    animate: {
       scale: isActive ? 1.1 : 1,
       rotateY: faceUp ? 0 : 180,
       transition: { duration: 0.5 }
@@ -36,7 +36,7 @@ const WrestlerCard = ({
       variants={cardVariants}
       initial="initial"
       animate="animate"
-      className="card-container"
+      className="card-container  w-full h-[500px]"
     >
       <div className={`card ${faceUp ? '' : 'flipped'}`}>
         {/* Front of the card */}
@@ -45,19 +45,39 @@ const WrestlerCard = ({
             <span className="card-rank">#{wrestler.rank}</span>
             <h3 className="card-name">{wrestler.name}</h3>
           </div>
-          
+
           <div className="card-image-wrapper">
-            <img 
-              src={wrestler.image} 
-              alt={wrestler.name} 
-              className="card-image"
+            <img
+              src={wrestler.image}
+              alt={wrestler.name}
+              className="card-image object-contain" // Changed from object-cover
+              style={{
+                width: '100%',
+                height: '100%',
+                objectFit: 'contain', // This prevents stretching
+                backgroundColor: 'rgb(17, 24, 39)' // Dark background for image
+              }}
             />
           </div>
-          
+
           <p className="wrestler-real-name">{wrestler.realName}</p>
 
           {showStats && (
             <div className="stats-container">
+              {/* Add Rank as first stat */}
+              <motion.button
+                variants={statsVariants}
+                whileHover="hover"
+                onClick={() => onSelectStat?.('rank')}
+                disabled={!onSelectStat}
+                className={`stat-button ${selectedStat === 'rank' ? 'selected' : ''
+                  } ${onSelectStat ? 'clickable' : ''}`}
+              >
+                <span className="stat-label">Rank</span>
+                <span className="stat-value">{wrestler.rank}</span>
+              </motion.button>
+
+              {/* Other stats */}
               {Object.entries(wrestler.stats).map(([stat, value]) => (
                 <motion.button
                   key={stat}
@@ -65,9 +85,8 @@ const WrestlerCard = ({
                   whileHover="hover"
                   onClick={() => onSelectStat?.(stat)}
                   disabled={!onSelectStat}
-                  className={`stat-button ${
-                    selectedStat === stat ? 'selected' : ''
-                  } ${onSelectStat ? 'clickable' : ''}`}
+                  className={`stat-button ${selectedStat === stat ? 'selected' : ''
+                    } ${onSelectStat ? 'clickable' : ''}`}
                 >
                   <span className="stat-label">{STATS[stat].label}</span>
                   <span className="stat-value">
@@ -81,9 +100,9 @@ const WrestlerCard = ({
 
         {/* Back of the card */}
         <div className="card-back">
-          <div className="wwe-logo">
-            <h2>WWE</h2>
-            <h3>TRUMP CARDS</h3>
+          <div className="wwe-logo no-flip">
+            <h2 style={{ transform: 'rotateY(180deg)' }}>WWE</h2>
+            <h3 style={{ transform: 'rotateY(180deg)' }}>TRUMP CARDS</h3>
           </div>
         </div>
       </div>

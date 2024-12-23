@@ -42,11 +42,11 @@
   }
   
   .card-image-wrapper {
-    @apply relative w-full h-40 mb-4;
+    @apply relative w-full h-48 mb-4 flex items-center justify-center bg-gray-900 rounded-lg overflow-hidden;
   }
   
   .card-image {
-    @apply w-full h-full object-cover rounded-lg shadow-lg;
+    @apply max-h-full max-w-full h-auto w-auto rounded-lg;
   }
   
   .wrestler-real-name {
@@ -93,3 +93,61 @@
   .wwe-logo h3 {
     @apply text-2xl font-bold text-white;
   }
+  .card-back .wwe-logo.no-flip {
+    transform: rotateY(180deg);
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    height: 100%;
+  }
+  
+  .card-back .wwe-logo.no-flip h2,
+  .card-back .wwe-logo.no-flip h3 {
+    transform: rotateY(180deg);
+    text-align: center;
+  }
+  
+  /* Add styles for rank stat */
+  .stat-button:first-child {
+    background: linear-gradient(to right, rgba(255, 69, 0, 0.2), rgba(255, 69, 0, 0.1));
+    border: 1px solid rgba(255, 69, 0, 0.3);
+  }
+  
+  .stat-button:first-child.selected {
+    background: linear-gradient(to right, rgba(255, 69, 0, 0.8), rgba(255, 69, 0, 0.6));
+  }
+
+  /* src/components/Card/WrestlerCard.css */
+.card-container {
+  @apply relative;
+  perspective: 1000px;
+}
+
+.card {
+  @apply relative w-full h-full transition-transform duration-500;
+  transform-style: preserve-3d;
+}
+
+.card-image-container {
+  @apply relative mb-4 p-2;
+  background: rgba(17, 24, 39, 0.5);
+}
+
+.stat-button {
+  @apply w-full flex justify-between items-center p-3 rounded-lg
+         transition-colors duration-200 bg-gray-800/50;
+}
+
+/* Ensure consistent spacing */
+.card-header {
+  @apply flex justify-between items-center mb-4;
+}
+
+.wrestler-real-name {
+  @apply text-sm text-gray-300 mb-4;
+}
+
+.stats-container {
+  @apply px-2;
+}
