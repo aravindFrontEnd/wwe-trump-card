@@ -57,3 +57,17 @@
 body {
   @apply bg-[#111827] text-white;
 }
+
+.min-h-screen {
+  display: flex;
+  flex-direction: column;
+}
+
+.flex-grow {
+  flex: 1 0 auto;
+}
+
+footer {
+  flex-shrink: 0;
+  border-top: 1px solid rgba(255, 255, 255, 0.1);
+}

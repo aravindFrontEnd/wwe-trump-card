@@ -4,6 +4,8 @@ import Confetti from 'react-confetti';
 import useWindowSize from 'react-use/lib/useWindowSize';
 import CardSelection from './components/CardSelection/CardSelection';
 import GameBoard from './components/GameBoard/GameBoard';
+import Footer from './components/Footer/Footer';
+
 
 const App = () => {
   const [numberOfCards, setNumberOfCards] = useState(null);
@@ -41,7 +43,7 @@ const App = () => {
           position='fixed'
         />
       )}
-
+      <div className="flex-grow">
       <AnimatePresence mode="wait">
         {!numberOfCards ? (
           <motion.div
@@ -67,6 +69,8 @@ const App = () => {
           </motion.div>
         )}
       </AnimatePresence>
+      <Footer />
+      </div>
     </div>
   );
 };
